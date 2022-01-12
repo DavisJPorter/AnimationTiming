@@ -5,13 +5,20 @@ using UnityEngine.Playables;
 
 public class TriggerScript : MonoBehaviour
 {
-    public Animation animation;
+    public PlayableDirector timeline;
+
+    public bool OneTimeTrigger = false;
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "Player")
         {
-            animation.Play();
+            timeline.Play();
+
+            if (OneTimeTrigger == true)
+            {
+                Destroy(this.gameObject);
+            }
 
         }
     }
